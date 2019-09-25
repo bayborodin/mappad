@@ -16,8 +16,29 @@
 {% endif %}
 </head>
 <body>
-    <h1>Mappad</h1>
-    {% block content %}{% endblock %}
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">Mappad</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="#">Link 1</a>
+            <a class="p-2 text-dark" href="#">Link 2</a>
+            <a class="p-2 text-dark" href="#">Link 3</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="#">Profile</a>
+    </div>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="sidebar col-lg-3 col-md-4">
+
+            </div>
+            <div class="main col-lg-6 col-md-8" id="main">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="sidebar col-md-3">
+
+            </div>
+        </div>
+    </main>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
