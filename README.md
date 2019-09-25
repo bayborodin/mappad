@@ -10,5 +10,5 @@
 * OpenStreetMap
 * Mapbox
 
-Интерфейс приложения:
+## Интерфейс приложения
 ![Интерфейс приложения](documentation/layout.png?raw=true "Интерфейс приложения")
