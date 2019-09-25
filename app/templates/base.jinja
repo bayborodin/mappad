@@ -1,0 +1,13 @@
+<html>
+<head>
+{% if title %}
+    <title>{{ title }} - Mappad</title>
+{% else %}
+    <title>Добро пожаловать в Mappad!</title>
+{% endif %}
+</head>
+<body>
+    <h1>Mappad</h1>
+    {% block content %}{% endblock %}
+</body>
+</html>
