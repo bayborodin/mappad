@@ -12,6 +12,8 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate():
+        return redirect(url_for('index'))
     return render_template('login.jinja', title='Авторизация', form=form)
 
 
