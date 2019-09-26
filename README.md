@@ -11,4 +11,5 @@
 * Mapbox
 
 ## Интерфейс приложения
-![Интерфейс приложения](documentation/layout.png?raw=true "Интерфейс приложения")
+![Авторизация](documentation/login.png?raw=true "Авторизация")
+![Главная страница](documentation/layout.png?raw=true "Главная страница")
