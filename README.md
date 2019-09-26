@@ -11,5 +11,7 @@
 * Mapbox
 
 ## Интерфейс приложения
-![Авторизация](documentation/login.png | width=50)
-![Главная страница](documentation/layout.png?raw=true "Главная страница")
+<p align="center">
+<img src="documentation/login.png" width=50%>
+<img src="documentation/layout.png?raw=true">
+</p>
