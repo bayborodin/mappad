@@ -31,7 +31,11 @@
         <nav class="my-2 my-md-0 mr-md-3">
             <a class="p-2 text-dark" href="{{ url_for('add_track') }}">Добавить трек</a>
         </nav>
-        <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Login</a>
+        {% if current_user.is_anonymous %}
+            <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Login</a>
+        {% else %}
+            <a class="btn btn-outline-primary" href="{{ url_for('logout') }}">Logout</a>
+        {% endif %}
     </div>
     <main role="main" class="container">
         <div class="row">
