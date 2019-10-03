@@ -32,8 +32,25 @@
         {% if current_user.is_anonymous %}
             <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Login</a>
         {% else %}
-            <a class="btn btn-outline-primary" href="{{ url_for('logout') }}">Logout</a>
-        {% endif %}
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
+                <img src="{{ current_user.avatar(36) }}">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownMenuLink">
+                    <div class="dropdown-item">{{ current_user.username }}</div>
+                    <hr>
+                    <a class="dropdown-item" href="{{ url_for('user', username=current_user.username) }}">Профиль</a>
+                    <a class="dropdown-item" href="{{ url_for('logout') }}">Выход</a>
+                </div>
+            </div>
+      {% endif %}
     </div>
     <main role="main" class="container">
         <div class="row">

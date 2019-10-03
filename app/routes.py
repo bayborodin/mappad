@@ -52,6 +52,17 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    tracks = [
+        {'author': user, 'title': 'Test track #1'},
+        {'author': user, 'title': 'Test track #2'}
+    ]
+    return render_template('user.jinja', user=user, tracks=tracks)
+
+
 @app.route('/addtrack')
 @login_required
 def add_track():
