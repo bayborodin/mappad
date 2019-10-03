@@ -9,9 +9,3 @@
 В проекте используется интеграция со следующими внешними сервисами:
 * OpenStreetMap
 * Mapbox
-
-## Интерфейс приложения
-<p align="center">
-<img src="documentation/login.png" width=50%>
-<img src="documentation/layout.png?raw=true">
-</p>
