@@ -9,7 +9,6 @@
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="/static/signin.css" rel="stylesheet">
 
 {% if title %}
     <title>{{ title }} - Mappad</title>
@@ -18,42 +17,50 @@
 {% endif %}
 </head>
 <body class="text-center">
-    <form class="form-signin" action=""method="post">
-        {{ form.hidden_tag() }}
-        <h1 class="h3 mb-3 font-weight-normal">Mappad</h1>
+    <div class="container-fluid py-3">
+        <div class="row">
+            <div class="col-md-4 mx-auto">
+            <h1 class="mb-5">Mappad</h1>
+                <form class="card card-body" action=""method="post">
+                    {{ form.hidden_tag() }}
+                    <h3 class="h3 mb-3 font-weight-normal">Авторизация</h3>
 
-        {% with messages = get_flashed_messages() %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-danger" role="alert">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-danger" role="alert">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <fieldset>
+                        <div class="form-group has-error">
+                            {{ form.username.label(class_="sr-only") }}
+                            {{ form.username(size=32, id="inputLogin", class_="form-control input-lg", placeholder="Логин") }}
+                        </div>
+                        <div class="form-group has-error">
+                            {{ form.password.label(class_="sr-only") }}
+                            {{ form.password(size=32, id="inputPassword", class_="form-control input-lg", placeholder="Пароль") }}
+                        </div>
+                        <div class="form-group">
+                            {{ form.remember_me() }} {{ form.remember_me.label }}
+                        </div>
 
-        {{ form.username.label(class_="sr-only") }}
-        {{ form.username(size=32, id="inputLogin", class_="form-control", placeholder="Логин") }}
+                        {{ form.submit(class_="btn btn-lg btn-primary btn-block") }}
+                    </fieldset>
+                    <p class="mt-2 mb-3">
+                        <a href="{{ url_for('register') }}">Новый пользователь</a>
+                    </p>
 
-        {{ form.password.label(class_="sr-only") }}
-        {{ form.password(size=32, id="inputPassword", class_="form-control", placeholder="Пароль") }}
-
-        <div class="checkbox mb-3">
-            {{ form.remember_me() }} {{ form.remember_me.label }}
+                    <p class="mt-5 mb-3 text-muted">
+                        &copy; 2019
+                        <a href="https://bayborodin.ru" target="blank">Nikolay Bayborodin</a>
+                    </p>
+                </form>
+            </div>
         </div>
-
-        {{ form.submit(class_="btn btn-lg btn-primary btn-block") }}
-
-        <p class="mt-2 mb-3">
-            <a href="{{ url_for('register') }}">Новый пользователь</a>
-        </p>
-
-        <p class="mt-5 mb-3 text-muted">
-            &copy; 2019
-            <a href="https://bayborodin.ru" target="blank">Nikolay Bayborodin</a>
-        </p>
-    </form>
-
+    </div>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
