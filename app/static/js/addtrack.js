@@ -4,15 +4,29 @@ function handleDragOver(evt) {
     evt.dataTransfer.dropEffect = 'copy';
 }
 
-function handleFileSelect(evt) {
-    evt.stopPropagation();
-    evt.preventDefault();
+function handleFileSelect(event) {
+    event.stopPropagation();
+    event.preventDefault();
 
     var files = evt.dataTransfer.files;
     var file = files[0];
     console.log(file.name);
-    var mapDiv = document.getElementById('demo');
-    mapdiv.setAttribute('data-gpx-source', 'file.name');
+
+    var text = "";
+    var reader = new FileReader();
+
+    var onload = function (event) {
+        text = reader.result;
+        parseFile(text);
+    };
+
+    reader.onload = onload;
+    reader.readAsText(files[0]);
+
+}
+
+function parseFile(text) {
+    console.log(text);
 }
 
 var dropZone = document.getElementById('drop_zone');

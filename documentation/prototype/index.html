@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style type="text/css">
+        #drop_zone {
+            border: 2px dashed #bbb;
+            border-radius: 5px;
+            padding: 25px;
+            text-align: center;
+            color: #bbb;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Добавить GPS трек</h2>
+    <form action="" method="post" novalidate>
+        <p>
+            Название:<br>
+            <input type="text" id="track-name">
+        </p>
+        <p>
+            Описание:<br>
+            <textarea id="track-desc" cols="40" rows="3"></textarea></p>
+        </p>
+        <div class="form-group">
+            <div id="drop_zone">Перетащите сюда gpx файл</div>
+        </div>
+
+        <input type="hidden" id="geo-json">
+
+        <input type="submit" id="submit-btn" disabled>
+    </form>
+
+    <script src='togeojson.js'></script>
+    <script type="application/javascript">
+        function handleDragOver(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = 'copy';
+        }
+
+        function handleFileSelect(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+
+            var files = evt.dataTransfer.files;
+            var file = files[0];
+
+            var text = "";
+            var reader = new FileReader();
+
+            var onload = function (event) {
+                var text = reader.result;
+                var xmlDoc = parseXml(text);
+                var geoJSONObject = toGeoJSON.gpx(xmlDoc);
+                var trackName = geoJSONObject.features[0].properties.name;
+                var trackDesc = geoJSONObject.features[0].properties.desc;
+
+                console.log(geoJSONObject);
+
+                trackNameField = document.getElementById('track-name');
+                trackNameField.value = trackName;
+
+                trackDescField = document.getElementById('track-desc');
+                trackDescField.value = trackDesc;
+
+                trackGeoJSONField = document.getElementById('geo-json');
+                trackGeoJSONField.value = JSON.stringify(geoJSONObject);
+                document.getElementById('submit-btn').disabled = false;
+            };
+
+            reader.onload = onload;
+            reader.readAsText(files[0]);
+            document.getElementById("drop_zone").innerHTML = files[0].name;
+        }
+
+        function parseXml(text) {
+            var parser = new DOMParser();
+            var docError = parser.parseFromString('INVALID', 'text/xml');
+            var parserErrorNS = docError.getElementsByTagName("parsererror")[0].namespaceURI;
+            var xmlDoc = parser.parseFromString(text, "text/xml");
+            if (xmlDoc.getElementsByTagNameNS(parserErrorNS, 'parsererror').length > 0) {
+                throw new Error('Error parsing XML')
+            }
+            return xmlDoc;
+        }
+
+        var dropZone = document.getElementById('drop_zone');
+        dropZone.addEventListener('dragover', handleDragOver, false);
+        dropZone.addEventListener('drop', handleFileSelect, false);
+    </script>
+</body>
+
+</html>
