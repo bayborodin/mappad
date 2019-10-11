@@ -25,16 +25,20 @@ login.login_view = 'login'
 
 
 if not app.debug:
-    logger = logging.getLogger()
-    gm = TlsSMTPHandler(
-        (app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
-        'no-reply@' + app.config['DOMAIN_NAME'],
-        [app.config['REPORT_EMAIL']],
-        app.config['DOMAIN_NAME'] + ' - Error Report',
-        (app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
-    )
-    gm.setLevel(logging.ERROR)
-    logger.addHandler(gm)
+    if app.config['MAIL_SERVER'] \
+            and app.config['REPORT_EMAIL'] \
+            and app.config['MAIL_USERNAME'] \
+            and app.config['MAIL_PASSWORD']:
+        logger = logging.getLogger()
+        gm = TlsSMTPHandler(
+            (app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
+            'no-reply@' + app.config['DOMAIN_NAME'],
+            [app.config['REPORT_EMAIL']],
+            app.config['DOMAIN_NAME'] + ' - Error Report',
+            (app.config['MAIL_USERNAME'], app.config['MAIL_PASSWORD'])
+        )
+        gm.setLevel(logging.ERROR)
+        logger.addHandler(gm)
 
     if not os.path.exists('logs'):
         os.mkdir('logs')

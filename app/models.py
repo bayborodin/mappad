@@ -44,6 +44,8 @@ class Track(db.Model):
     title = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    description = db.Column(db.String(250))
+    raw_gpx = db.Column(db.Text())
 
     def __repr__(self):
         return '<Track {}>'.format(self.title)
