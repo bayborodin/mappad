@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import TextAreaField, HiddenField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError, Length
 from app.models import User
 
@@ -44,3 +45,13 @@ class EditProfileForm(FlaskForm):
             user = User.query.filter_by(username=self.username.data).first()
             if user is not None:
                 raise ValidationError('Пожалуйста, выберите другое имя.')
+
+
+class AddTrackForm(FlaskForm):
+    title = StringField('Название', validators=[DataRequired()],
+                        render_kw={"class": "form-control"})
+    description = TextAreaField('Описание', validators=[
+                                Length(min=0, max=140)],
+                                render_kw={"class": "form-control"})
+    raw_gpx = HiddenField(validators=[DataRequired()])
+    submit = SubmitField('Сохранить', render_kw={"class": "btn btn-primary"})

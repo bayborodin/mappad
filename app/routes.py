@@ -4,6 +4,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
+from app.forms import AddTrackForm
 from app.models import User
 
 
@@ -92,4 +93,6 @@ def edit_profile():
 @app.route('/addtrack')
 @login_required
 def add_track():
-    return render_template('addtrack.jinja')
+    title = 'Добавить GPS трек'
+    form = AddTrackForm()
+    return render_template('addtrack.jinja', page_title=title, form=form)
