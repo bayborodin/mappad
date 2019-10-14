@@ -35,7 +35,7 @@
             <a class="p-2 text-dark" href="{{ url_for('add_track') }}">Добавить трек</a>
         </nav>
         {% if current_user.is_anonymous %}
-            <a class="btn btn-outline-primary" href="{{ url_for('login') }}">Login</a>
+            <a class="btn btn-outline-primary" href="{{ url_for('user.login') }}">Login</a>
         {% else %}
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
@@ -51,8 +51,8 @@
                 <div class="dropdown-menu dropdown-menu-right text-right" aria-labelledby="navbarDropdownMenuLink">
                     <div class="dropdown-item">{{ current_user.username }}</div>
                     <hr>
-                    <a class="dropdown-item" href="{{ url_for('user', username=current_user.username) }}">Профиль</a>
-                    <a class="dropdown-item" href="{{ url_for('logout') }}">Выход</a>
+                    <a class="dropdown-item" href="{{ url_for('user.user', username=current_user.username) }}">Профиль</a>
+                    <a class="dropdown-item" href="{{ url_for('user.logout') }}">Выход</a>
                 </div>
             </div>
       {% endif %}

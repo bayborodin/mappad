@@ -43,14 +43,14 @@
                             {{ form.password.label(class_="sr-only") }}
                             {{ form.password(size=32, id="inputPassword", class_="form-control input-lg", placeholder="Пароль") }}
                         </div>
-                        <div class="form-group">
-                            {{ form.remember_me() }} {{ form.remember_me.label }}
+                        <div class="form-group form-check">
+                            {{ form.remember_me() }} {{ form.remember_me.label(class_='form_check_label') }}
                         </div>
 
                         {{ form.submit(class_="btn btn-lg btn-primary btn-block") }}
                     </fieldset>
                     <p class="mt-2 mb-3">
-                        <a href="{{ url_for('register') }}">Новый пользователь</a>
+                        <a href="{{ url_for('user.register') }}">Новый пользователь</a>
                     </p>
 
                     <p class="mt-5 mb-3 text-muted">

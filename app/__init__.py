@@ -21,8 +21,10 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
-login.login_view = 'login'
+login.login_view = 'user.login'
 
+from app.user.views import blueprint as user_blueprint
+app.register_blueprint(user_blueprint)
 
 if not app.debug:
     if app.config['MAIL_SERVER'] \
@@ -52,5 +54,3 @@ if not app.debug:
 
     app.logger.setLevel(logging.INFO)
     app.logger.info('Mappad startup')
-
-from app import routes, models, errors
