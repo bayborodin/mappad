@@ -23,7 +23,6 @@ docker run --name mappad  -d -p 8000:5000 --rm -e DATABASE_URI=postgresql://mapp
 
 ## Интерфейс приложения
 <div align="center">
-<img src="documentation/login.png" width=50%>
-<img src="documentation/layout_1.png" width=50%>
 <img src="documentation/layout_2.png" width=50%>
+<img src="documentation/layout_1.png" width=50%>
 </div>
