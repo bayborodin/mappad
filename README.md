@@ -20,3 +20,10 @@ export DATABASE_URI="postgresql://mappad:mappad@localhost/mappad" && export FLAS
 docker build -t mappad:latest .
 docker run --name mappad  -d -p 8000:5000 --rm -e DATABASE_URI=postgresql://mappad:q123Q123@mappad.ctixcsaspk7s.us-west-2.rds.amazonaws.com -e FLASK_DEBUG=1 -e SECRET_KEY=SXRnASFEbGkwdpFokZlDkgjeIuRqbPoZ  mappad:latest
 ```
+
+## Интерфейс приложения
+<div align="center">
+<img src="documentation/login.png" width=50%>
+<img src="documentation/layout_1.png" width=50%>
+<img src="documentation/layout_2.png" width=50%>
+</div>
