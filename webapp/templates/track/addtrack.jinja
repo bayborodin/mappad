@@ -71,10 +71,8 @@
                 var text = reader.result;
                 var xmlDoc = parseXml(text);
 
-
-                trackGeoJSONField = document.getElementById('geo-json');
+                trackGeoJSONField = document.getElementById('rawgpx');
                 trackGeoJSONField.value = text;
-                document.getElementById('submit-btn').disabled = false;
                 mapElement = document.getElementById('demo');
                 display_gpx(mapElement, text);
             };

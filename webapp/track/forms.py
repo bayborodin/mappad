@@ -10,5 +10,5 @@ class AddTrackForm(FlaskForm):
     description = TextAreaField('Описание', validators=[
                                 Length(min=0, max=140)],
                                 render_kw={"class": "form-control"})
-    raw_gpx = HiddenField(validators=[DataRequired()])
+    rawgpx = HiddenField(validators=[DataRequired()])
     submit = SubmitField('Сохранить', render_kw={"class": "btn btn-primary"})
