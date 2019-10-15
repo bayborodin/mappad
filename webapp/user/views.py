@@ -2,23 +2,14 @@ from datetime import datetime
 from flask import render_template, redirect, url_for, request, flash
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app import db
-from app.user.forms import LoginForm, RegistrationForm, EditProfileForm
-from app.user.models import User
-from app import app
-from app import routes
+from webapp import db
+from webapp.user.forms import LoginForm, RegistrationForm, EditProfileForm
+from webapp.user.models import User
 
 from flask import Blueprint
 
 
 blueprint = Blueprint('user', __name__, url_prefix='/users')
-
-
-@app.before_request
-def before_request():
-    if current_user.is_authenticated:
-        current_user.last_seen = datetime.utcnow()
-        db.session.commit()
 
 
 @blueprint.route('/register', methods=['GET', 'POST'])
@@ -33,7 +24,7 @@ def register():
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('user.login'))
-    return render_template('register.jinja', title='Register', form=form)
+    return render_template('user/register.jinja', title='Register', form=form)
 
 
 @blueprint.route('/login', methods=['GET', 'POST'])
@@ -49,30 +40,28 @@ def login():
         login_user(user, remember=form.remember_me.data)
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
+            next_page = url_for('home.index')
         return redirect(next_page)
-    return render_template('login.jinja', title='Авторизация', form=form)
+    return render_template('user/login.jinja', title='Авторизация', form=form)
 
 
 @blueprint.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('home.index'))
 
 
 @blueprint.route('/user/<username>')
-@login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
     tracks = [
         {'author': user, 'title': 'Test track #1'},
         {'author': user, 'title': 'Test track #2'}
     ]
-    return render_template('user.jinja', user=user, tracks=tracks)
+    return render_template('user/user.jinja', user=user, tracks=tracks)
 
 
 @blueprint.route('/edit_profile', methods=['GET', 'POST'])
-@login_required
 def edit_profile():
     form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
@@ -86,4 +75,4 @@ def edit_profile():
         form.about_me.data = current_user.about_me
     else:
         flash('Пожалуйста, выберите другое имя.')
-    return render_template('edit_profile.jinja', title='Edit Profile', form=form)
+    return render_template('user/edit_profile.jinja', title='Edit Profile', form=form)

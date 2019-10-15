@@ -1,5 +1,6 @@
 from datetime import datetime
-from app import db
+
+from webapp import db
 
 
 class Track(db.Model):

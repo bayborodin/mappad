@@ -10,10 +10,4 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DOMAIN_NAME = os.environ.get('DOMAIN_NAME') or 'mappad.local'
-    MAIL_SERVER = os.environ.get('MAIL_SERVER')
-    MAIL_PORT = int(os.environ.get('MAIL_PORT') or 25)
-    MAIL_USE_TLS = os.environ.get('MAIL_USE_TLC') is not None
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
-    REPORT_EMAIL = os.environ.get('REPORT_EMAIL')
     REMEMBER_COOKIE_DURATION = timedelta(days=5)

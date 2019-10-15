@@ -9,12 +9,13 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 RUN pip install psycopg2
 
-COPY app app
+COPY webapp webapp
 COPY migrations migrations
-COPY application.py config.py boot.sh ./
+COPY wsgi.py ./
+COPY boot.sh ./
 RUN chmod +x boot.sh
 
-ENV FLASK_APP application.py
+ENV FLASK_APP webapp
 
 RUN chown -R mappad:mappad ./
 USER mappad

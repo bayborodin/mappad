@@ -14,3 +14,9 @@
 ```bash
 export DATABASE_URI="postgresql://mappad:mappad@localhost/mappad" && export FLASK_ENV=development && export FLASK_DEBUG=1 && export export FLASK_APP=app && flask run
 ```
+
+## Запуск Docker контейнера
+```bash
+docker build -t mappad:latest .
+docker run --name mappad  -d -p 8000:5000 --rm -e DATABASE_URI=postgresql://mappad:q123Q123@mappad.ctixcsaspk7s.us-west-2.rds.amazonaws.com -e FLASK_DEBUG=1 -e SECRET_KEY=SXRnASFEbGkwdpFokZlDkgjeIuRqbPoZ  mappad:latest
+```
