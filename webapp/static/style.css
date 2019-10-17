@@ -2,27 +2,27 @@
     margin-bottom: 50px;
 }
 
-.gpx {
+.gpx-map {
     border: 1px #aaa  solid;
     margin: 1em auto;
 }
 
-.gpx header {
+.gpx-map header {
     padding: 0.5em;
 }
 
-.gpx h3 {
+.gpx-map h3 {
     margin: 0;
     padding: 0;
     font-weight: bold;
 }
 
-.gpx .start {
+.gpx-map .start {
     font-size: smaller;
     color: #444;
 }
 
-.gpx .map {
+.gpx-map .map {
     border: 1px #888 solid;
     border-left: none;
     border-right: none;
@@ -30,25 +30,25 @@
     margin: 0;
 }
 
-.gpx footer {
+.gpx-map footer {
     background: #f0f0f0;
     padding: 0.5em;
 }
 
-.gpx ul.info {
+.gpx-map ul.info {
     list-style: none;
     margin: 0;
     padding: 0;
     font-size: smaller;
 }
 
-.gpx ul.info li {
+.gpx-map ul.info li {
     color: #666;
     padding: 2px;
     display: inline;
 }
 
-.gpx ul.info li span {
+.gpx-map ul.info li span {
     color: black;
 }
 
