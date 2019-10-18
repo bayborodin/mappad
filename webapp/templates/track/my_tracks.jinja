@@ -12,6 +12,12 @@
     {% include 'track/_track_map.jinja' %}
 </p>
 {% endfor %}
+{% if prev_url %}
+<a href="{{ prev_url }}">← сюда</a>
+{% endif %}
+{% if next_url %}
+<a href="{{ next_url }}">туда →</a>
+{% endif %}
 {% endblock content %}
 
 {% block scripts %}

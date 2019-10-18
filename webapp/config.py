@@ -11,3 +11,4 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DOMAIN_NAME = os.environ.get('DOMAIN_NAME') or 'mappad.local'
     REMEMBER_COOKIE_DURATION = timedelta(days=5)
+    TRACKS_PER_PAGE = 3

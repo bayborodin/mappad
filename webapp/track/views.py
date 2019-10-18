@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request, current_app
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_required, current_user
 
@@ -32,5 +32,14 @@ def add_track():
 @login_required
 def my_tracks():
     title = 'Мои GPS треки'
-    tracks = current_user.tracks.all()
-    return render_template('track/my_tracks.jinja', page_title=title, tracks=tracks)
+    page = request.args.get('page', 1, type=int)
+    tracks = current_user.tracks.order_by(Track.timestamp.desc()).paginate(
+        page, current_app.config['TRACKS_PER_PAGE'], False)
+    next_url = url_for('track.my_tracks',
+                       page=tracks.next_num) if tracks.has_next else None
+    prev_url = url_for('track.my_tracks',
+                       page=tracks.prev_num) if tracks.has_prev else None
+
+    return render_template('track/my_tracks.jinja', page_title=title,
+                           tracks=tracks.items, next_url=next_url,
+                           prev_url=prev_url)
