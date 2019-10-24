@@ -109,3 +109,6 @@ venv.bak/
 
 # Editor
 .vscode/
+
+# Other
+accessKeys.csv
