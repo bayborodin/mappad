@@ -27,10 +27,12 @@
 </head>
 <body>
     {% include '_main_menu.jinja' %}
-    <main role="main" class="container">
+    <main role="main" class="page container mt-lg">
         <div class="row">
             <div class="sidebar col-lg-3 col-md-4">
-
+                {% block left_side_bar %}
+                    {% include 'user/_profile.jinja' %}
+                {% endblock %}
             </div>
             <div class="main col-lg-6 col-md-8" id="main">
                 {% with messages = get_flashed_messages() %}
