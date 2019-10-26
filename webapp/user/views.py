@@ -66,12 +66,14 @@ def edit_profile():
     form = EditProfileForm(current_user.username)
     if form.validate_on_submit():
         current_user.username = form.username.data
+        current_user.full_name = form.full_name.data
         current_user.about_me = form.about_me.data
         db.session.commit()
         flash('Изменения сохранены.')
         return redirect(url_for('user.edit_profile'))
     elif request.method == 'GET':
         form.username.data = current_user.username
+        form.full_name.data = current_user.full_name
         form.about_me.data = current_user.about_me
     else:
         flash('Пожалуйста, выберите другое имя.')

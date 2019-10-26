@@ -33,6 +33,7 @@ class RegistrationForm(FlaskForm):
 
 class EditProfileForm(FlaskForm):
     username = StringField('Имя пользователя', validators=[DataRequired()])
+    full_name = StringField('Полное имя', validators=[Length(min=0, max=32)])
     about_me = TextAreaField('Обо мне', validators=[Length(min=0, max=140)])
     submit = SubmitField('Сохранить')
 
