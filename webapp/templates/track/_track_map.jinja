@@ -6,7 +6,12 @@
 >
     <header>
             <h3>{{ track.title }}</h3>
-            <span class="start"></span>
+            <div class="row description-panel">
+                <span class="start description-left"></span>
+                <span class="description-right">
+                    <a href="{{ url_for('user.user', username=track.author.username) }}">{{ track.author.username }}</a>
+                </span>
+            </div>
     </header>
 
     <article>

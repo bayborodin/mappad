@@ -159,11 +159,6 @@ ul, ol {
     font-weight: bold;
 }
 
-.gpx-map .start {
-    font-size: smaller;
-    color: #444;
-}
-
 .gpx-map .map {
     border: 1px #888 solid;
     border-left: none;
@@ -200,4 +195,24 @@ ul, ol {
     padding: 25px;
     text-align: center;
     color: #bbb;
+}
+
+.description-panel {
+    margin: 0px;
+}
+
+.description-left {
+    font-size: smaller;
+    color: #444;
+    float: left;
+    width: 50%;
+    text-align: left;
+}
+
+.description-right {
+    font-size: smaller;
+    color: #444;
+    float: right;
+    width: 50%;
+    text-align: right;
 }

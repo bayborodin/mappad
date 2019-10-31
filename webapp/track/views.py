@@ -43,3 +43,12 @@ def my_tracks():
     return render_template('track/my_tracks.jinja', page_title=title,
                            tracks=tracks.items, next_url=next_url,
                            prev_url=prev_url)
+
+
+@blueprint.route('/last')
+@login_required
+def last_tracks():
+    title = 'Новые GPS треки'
+    tracks = Track.query.order_by(Track.timestamp.desc()).limit(
+        current_app.config['TRACKS_PER_PAGE']).all()
+    return render_template('track/last_tracks.jinja', page_title=title, tracks=tracks)
