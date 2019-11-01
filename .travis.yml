@@ -11,7 +11,7 @@ env:
 services:
   - docker
 script:
-  - pecho "No tests!"
+  - echo "No tests!"
 after_success:
   - docker-deploy/docker_push.sh
   - docker-deploy/ecs_deploy.sh
