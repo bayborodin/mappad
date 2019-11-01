@@ -25,7 +25,7 @@ class UserModelCase(unittest.TestCase):
         u = User(username='susan')
         u.set_password('cat')
         self.assertFalse(u.check_password('dog'))
-        self.assertTrue(u.check_password('dog'))
+        self.assertTrue(u.check_password('cat'))
 
     def test_avatar(self):
         u = User(username='john', email='john@example.com')
