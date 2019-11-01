@@ -10,8 +10,14 @@ env:
   - secure: z6vShVqnuMK/xMHdSP0ldtIGj1K6UuOahXjAqWcizXssIfaRzwhlbZ0KiavrHAjOXVT6vdqn1NZISpE8u0Qe17Les9rKNTtok+Z6cPCpXvc2VrujCCeLT3TdiWloeJCSIQl/6kB7A+lz7Tudn/yFu9sCFqjQ0udGbu/DIqIrlPvZvrUzHHN9PHO22S0yAF54/RsQmH3jsHK53UDCYRVeLviF5mFZSFbXYhWFeOEsUYfXzJQ4okneQeoqSr0fqGpc8L1DGQ7xhiNnISS5ERaK87ujlhzn3U/tcyET+tVz2b4OgZExXb17+3LTxzMAgBFApAPFbKVLHcFWXRNHK56k8shOgXLjyrbJm+tEApCld87sMiui8zB07ZoJd81IQmVbRGriObGLRKc9TD6FVHV6vHSg+Mt+2YcjNAtrEVCerWq344hrciO0a2pEd1shyBnbX5OW9wzs6InwY+fT1IK6NIn4EZZs9SUHrNHeo3NiLfZqamjpnbv49kGxTyvbxx6BNI1Tw6WHsdi+50fUFtBj2un+I+kwqAPQgAFd5LgobymYKc9ULJLNBLZpH77ENbwlaoiouHb2fnW2hrx/pOao2Qye842BY7fRugUp+6qKGUxE+S6NQXjFGJVjhzaR3Dm2z2veQp48Okwn7qDtNXVkI5wNuWiwl92tjZa5JlId1iQ=
 services:
   - docker
+before_install:
+  - docker build -t mappad:latest .
+  - docker run -d --name app mappad:latest
+  - docker ps -a
 script:
-  - echo "No tests!"
+  - docker exec app python -m unittest discover
+after_script:
+  - docker rm -f app
 after_success:
   - docker-deploy/docker_push.sh
   - docker-deploy/ecs_deploy.sh
