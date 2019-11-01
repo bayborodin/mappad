@@ -12,7 +12,7 @@ from webapp.track.views import blueprint as track_blueprint
 from webapp.home.views import blueprint as home_blueprint
 
 
-def create_app():
+def create_app(config_class=Config):
 
     sentry_sdk.init(
         dsn="https://d0595f9508754ce580ea01ca3d07000a@sentry.io/1773892",
@@ -20,7 +20,7 @@ def create_app():
     )
 
     app = Flask(__name__, static_url_path='/static')
-    app.config.from_object(Config)
+    app.config.from_object(config_class)
 
     db.init_app(app)
     migrate = Migrate(app, db)

@@ -11,7 +11,10 @@ env:
 services:
 - docker
 script:
-- echo "No tests!"
+- python tests.py
 after_success:
 - docker-deploy/docker_push.sh
 - docker-deploy/ecs_deploy.sh
+notifications:
+  email:
+    - nicholas.bayborodin@gmail.com
