@@ -22,13 +22,13 @@
             <li>
                 <a class="stat" href="#">
                     <div class="stat-subtext">Подписки</div>
-                    <b class="stat-text">0</b>
+                    <b class="stat-text">{{ current_user.followed.count() }}</b>
                 </a>
             </li>
             <li>
                 <a class="stat" href="#">
                     <div class="stat-subtext">Подписчики</div>
-                    <b class="stat-text">0</b>
+                    <b class="stat-text">{{ current_user.followers.count() }}</b>
                 </a>
             </li>
             <li>
