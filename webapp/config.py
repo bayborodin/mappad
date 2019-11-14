@@ -12,3 +12,4 @@ class Config(object):
     DOMAIN_NAME = os.environ.get('DOMAIN_NAME') or 'mappad.local'
     REMEMBER_COOKIE_DURATION = timedelta(days=5)
     TRACKS_PER_PAGE = 3
+    GA_ID = os.environ.get('GA_ID') or 'UA-0000000-00'
