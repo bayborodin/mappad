@@ -19,8 +19,8 @@ script:
 after_script:
   - docker rm -f app
 after_success:
-  - docker-deploy/docker_push.sh
-  - docker-deploy/ecs_deploy.sh
+  # - docker-deploy/docker_push.sh
+  # - docker-deploy/ecs_deploy.sh
 notifications:
   email:
     - nicholas.bayborodin@gmail.com
